@@ -1,0 +1,72 @@
+{
+  "pages": [
+    {
+      "path": "pages/index",
+      "config": {
+        "navigationBarTitleText": "糯米团子生活助手"
+      }
+    },
+    {
+      "path": "pages/products"
+    },
+    {
+      "path": "pages/prod-detail"
+    },
+    {
+      "path": "pages/category"
+    },
+    {
+      "path": "pages/ucenter",
+      "config": {
+        "navigationBarTitleText": "个人中心"
+      }
+    },
+    {
+      "path": "pages/search-help"
+    },
+    {
+      "path": "pages/search",
+      "config": {
+        "navigationBarTitleText": "搜索"
+      }
+    },
+    {
+      "path": "pages/rank",
+      "config": {
+        "navigationBarTitleText": "排行榜"
+      }
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#EF1612",
+    "navigationBarTitleText": "生活小助手",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f7f7f7"
+  },
+  "usingComponents": {
+    "van-tag": "/vant-weapp/dist/tag/index"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#EF1612",
+    "backgroundColor": "#fff",
+    "list": [{
+      "pagePath": "pages/index",
+      "iconPath": "static/images/tab/mall.png",
+      "selectedIconPath": "static/images/tab/mall-selected.png",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/category",
+      "iconPath": "static/images/tab/search.png",
+      "selectedIconPath": "static/images/tab/search-selected.png",
+      "text": "搜券"
+    }, {
+      "pagePath": "pages/ucenter",
+      "iconPath": "static/images/tab/ucenter.png",
+      "selectedIconPath": "static/images/tab/ucenter-selected.png",
+      "text": "个人中心"
+    }]
+  },
+  "navigateToMiniProgramAppIdList": ["wx32540bd863b27570"]
+}
