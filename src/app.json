@@ -45,7 +45,13 @@
     {
       "path": "pages/festival",
       "config": {
-        "navigationBarTitleText": "节日祝福"
+        "navigationBarTitleText": "鼠年祝福"
+      }
+    },
+    {
+      "path": "pages/festivalDraw",
+      "config": {
+        "navigationBarTitleText": "鼠年祝福"
       }
     },
     {

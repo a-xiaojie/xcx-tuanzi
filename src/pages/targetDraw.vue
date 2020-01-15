@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div style='overflow:hidden;width:0;height:0;'>
-      <canvas :style="{width: width + 'px', height: height + 'px',position: 'fixed', left: '9999px'}" canvas-id="firstCanvas" v-show="!imgUrl"></canvas>
+      <canvas :style="{width: width + 'px', height: height + 'px',position: 'fixed', left: '9999px'}" canvas-id="firstCanvas"></canvas>
     </div>
     <div class="img-wrap flex items-center justify-center">
       <img :src="imgUrl" mode="aspectFit" v-if="imgUrl">
@@ -38,22 +38,24 @@
           const x = this.width / 2
 
           ctx.drawImage('/static/images/target/bg.jpg', 0, 0, this.width, this.height);
-          const avatar = await wxAsync({
-            api: 'getImageInfo',
-            params: {
-              src: this.avatarUrl
-            }
-          })
-          console.log('avatar', avatar)
-          ctx.save();
-          ctx.beginPath(); //开始绘制
-          ctx.arc(x,120,60, 0, 2 * Math.PI)
-          ctx.setStrokeStyle('#ffffff')
-          ctx.lineWidth = 10
-          ctx.stroke();
-          ctx.clip(); //剪切
-          ctx.drawImage(avatar.path, x - 60, 60, 120, 120); //userHeader  // 推进去图片必须是https
-          ctx.restore(); //恢复之前保存的绘图上下文 继续绘制
+          if (this.avatarUrl) {
+            const avatar = await wxAsync({
+              api: 'getImageInfo',
+              params: {
+                src: this.avatarUrl
+              }
+            })
+            console.log('avatar', avatar)
+            ctx.save();
+            ctx.beginPath(); //开始绘制
+            ctx.arc(x,120,60, 0, 2 * Math.PI)
+            ctx.setStrokeStyle('#ffffff')
+            ctx.lineWidth = 10
+            ctx.stroke();
+            ctx.clip(); //剪切
+            ctx.drawImage(avatar.path, x - 60, 60, 120, 120); //userHeader  // 推进去图片必须是https
+            ctx.restore(); //恢复之前保存的绘图上下文 继续绘制
+          }
 
           ctx.setFontSize(40) //字体大小
           ctx.setFillStyle('#ef6009') //字体颜色
