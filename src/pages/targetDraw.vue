@@ -33,54 +33,63 @@
         linkTo(url);
       },
       async draw () {
-        var ctx = wx.createCanvasContext('firstCanvas')
-        const x = this.width / 2
+        try {
+          var ctx = wx.createCanvasContext('firstCanvas')
+          const x = this.width / 2
 
-        ctx.drawImage('/static/images/target/bg.jpg', 0, 0, this.width, this.height);
-        const avatar = await wxAsync({
-          api: 'getImageInfo',
-          params: {
-            src: this.avatarUrl
-          }
-        })
-        ctx.save();
-        ctx.beginPath(); //开始绘制
-        ctx.arc(x,120,60, 0, 2 * Math.PI)
-        ctx.setStrokeStyle('#ffffff')
-        ctx.lineWidth = 10
-        ctx.stroke();
-        ctx.clip(); //剪切
-        ctx.drawImage(avatar.path, x - 60, 60, 120, 120); //userHeader  // 推进去图片必须是https
-        ctx.restore(); //恢复之前保存的绘图上下文 继续绘制
-
-        ctx.setFontSize(40) //字体大小
-        ctx.setFillStyle('#ef6009') //字体颜色
-        ctx.textAlign = "left"; //文字居中
-
-        for (let i = 0; i < this.selectFlags.length; i++) {
-          ctx.fillText(`${i + 1}. ${this.selectFlags[i]}`, 80, 465 + i * 104);
-        }
-        ctx.draw(true, setTimeout(async () => {
-          const temp = await wxAsync({
-            api: 'canvasToTempFilePath',
+          ctx.drawImage('/static/images/target/bg.jpg', 0, 0, this.width, this.height);
+          const avatar = await wxAsync({
+            api: 'getImageInfo',
             params: {
-              canvasId: 'firstCanvas'
+              src: this.avatarUrl
             }
-          });
-          console.log(temp)
-          this.imgUrl = temp.tempFilePath
-        },2000))
+          })
+          console.log('avatar', avatar)
+          ctx.save();
+          ctx.beginPath(); //开始绘制
+          ctx.arc(x,120,60, 0, 2 * Math.PI)
+          ctx.setStrokeStyle('#ffffff')
+          ctx.lineWidth = 10
+          ctx.stroke();
+          ctx.clip(); //剪切
+          ctx.drawImage(avatar.path, x - 60, 60, 120, 120); //userHeader  // 推进去图片必须是https
+          ctx.restore(); //恢复之前保存的绘图上下文 继续绘制
+
+          ctx.setFontSize(40) //字体大小
+          ctx.setFillStyle('#ef6009') //字体颜色
+          ctx.textAlign = "left"; //文字居中
+
+          for (let i = 0; i < this.selectFlags.length; i++) {
+            ctx.fillText(`${i + 1}. ${this.selectFlags[i]}`, 80, 465 + i * 104);
+          }
+          ctx.draw(true, setTimeout(async () => {
+            console.log('drawing')
+            const temp = await wxAsync({
+              api: 'canvasToTempFilePath',
+              params: {
+                canvasId: 'firstCanvas'
+              }
+            });
+            console.log('drawing temp', temp)
+            this.imgUrl = temp.tempFilePath
+
+            wx.removeStorageSync('selectFlags')
+          },2000))
+        } catch (e) {
+          console.log(e)
+        }
       },
       async saveToAlbum () {
         const res = await wxAsync({
           api: 'getSetting'
         })
+        const that = this
         if (!res.authSetting['scope.writePhotosAlbum']) {
           wx.authorize({
             scope: 'scope.writePhotosAlbum',
             success() {
               // 用户已经同意小程序相册功能，后续调用 wx.saveImageToPhotosAlbum 接口不会弹窗询问
-              this.startSaveImage()
+              that.startSaveImage()
             }
           })
         } else {

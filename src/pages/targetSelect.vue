@@ -66,7 +66,6 @@
       },
       checkboxChange (e) {
         this.selectFlags = e.target.value
-        console.log(this.flags)
       },
       addFlag () {
         this.flags.unshift({name: this.flag})
@@ -79,6 +78,13 @@
             title: '您立了太多Flag了，先立5个好吗？',
             icon: 'none'
           });
+          return;
+        }
+        if (this.selectFlags.length === 0) {
+          wx.showToast({
+            title: '别急，您还没立Flag呢！',
+            icon: 'none'
+          })
           return;
         }
         wx.setStorageSync('selectFlags', JSON.stringify(this.selectFlags))

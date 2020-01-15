@@ -83,9 +83,6 @@
     "navigationBarTextStyle": "white",
     "backgroundColor": "#f7f7f7"
   },
-  "usingComponents": {
-    "van-tag": "/vant-weapp/dist/tag/index"
-  },
   "tabBar": {
     "color": "#333333",
     "selectedColor": "#EF1612",
@@ -101,7 +98,7 @@
       "selectedIconPath": "static/images/tab/search-selected.png",
       "text": "搜券"
     }, {
-      "pagePath": "pages/target",
+      "pagePath": "pages/ucenter",
       "iconPath": "static/images/tab/ucenter.png",
       "selectedIconPath": "static/images/tab/ucenter-selected.png",
       "text": "个人中心"
