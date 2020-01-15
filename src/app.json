@@ -35,6 +35,45 @@
       "config": {
         "navigationBarTitleText": "排行榜"
       }
+    },
+    {
+      "path": "pages/elem",
+      "config": {
+        "navigationBarTitleText": "饿了么福利红包每日领"
+      }
+    },
+    {
+      "path": "pages/festival",
+      "config": {
+        "navigationBarTitleText": "节日祝福"
+      }
+    },
+    {
+      "path": "pages/target",
+      "config": {
+        "navigationBarTitleText": "新年Flag",
+        "navigationBarBackgroundColor": "#e64d45"
+      }
+    },
+    {
+      "path": "pages/targetSelect",
+      "config": {
+        "navigationBarTitleText": "新年Flag",
+        "navigationBarBackgroundColor": "#e64d45"
+      }
+    },
+    {
+      "path": "pages/targetDraw",
+      "config": {
+        "navigationBarTitleText": "新年Flag",
+        "navigationBarBackgroundColor": "#e64d45"
+      }
+    },
+    {
+      "path": "pages/daka",
+      "config": {
+        "navigationBarTitleText": "打卡"
+      }
     }
   ],
   "window": {
@@ -62,7 +101,7 @@
       "selectedIconPath": "static/images/tab/search-selected.png",
       "text": "搜券"
     }, {
-      "pagePath": "pages/ucenter",
+      "pagePath": "pages/target",
       "iconPath": "static/images/tab/ucenter.png",
       "selectedIconPath": "static/images/tab/ucenter-selected.png",
       "text": "个人中心"

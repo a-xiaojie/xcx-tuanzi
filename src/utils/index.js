@@ -3,7 +3,7 @@ import wxAsync from './wxAsync';
 import qs from 'qs';
 import { DEFAULT_SHARE_TITLE, DEFAULT_CONFIG} from '../constants';
 
-function formatNumber (n) {
+export function formatNumber (n) {
   const str = n.toString()
   return str[1] ? str : `0${str}`
 }
